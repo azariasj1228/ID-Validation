@@ -16,9 +16,7 @@ else:
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    if request.method == "GET":
-        return render_template("index.html")
-
+    # Only run the heavy lifting if the user clicks "Run Authentication"
     if request.method == "POST":
         file_upload = request.files.get('file_upload')
         doc_type = request.form.get('doc_type', 'pan') 
@@ -26,7 +24,6 @@ def index():
         if not file_upload:
             return render_template("index.html", pred="No file uploaded")
 
-        # Set reference image based on document type
         ref_filename = "original.jpg" if doc_type == 'pan' else "license.jpg.webp"
         project_root = os.path.dirname(app.root_path)
         ref_path = os.path.join(project_root, 'sample_data', ref_filename)
@@ -83,3 +80,6 @@ def index():
         cv2.imwrite(os.path.join(app.root_path, 'static', 'generated', 'image_uploaded.jpg'), uploaded_cv)
         
         return render_template('index.html', pred=f"{status} ({result_percent}%)")
+
+    # This is the "Fallback" — it handles GET, HEAD, and any other traffic
+    return render_template("index.html")
