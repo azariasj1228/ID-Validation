@@ -1,31 +1,25 @@
-<<<<<<< HEAD
-Step to run application:
-Step 1:	Create the copy of the project.
-Step 2: Open command prompt and change your current path 
-to folder where you can find 'app.py' file.
-Step 3: Create environment by command given below-
-conda create -name <environment name>
-Step 4: Activate environment by command as follows-
-conda activate <environment name>
-Step 5: Use command below to install required dependencies-
-python -m pip install -r requirements.txt
-Step 6: Run application by command;
-python app.py
-You will get url copy it and paste in browser.
-Step 7: You have sample_data folder where you can get images to test.
-=======
-Step to run application:
-Step 1:	Create the copy of the project.
-Step 2: Open command prompt and change your current path 
-to folder where you can find 'app.py' file.
-Step 3: Create environment by command given below-
-conda create -name <environment name>
-Step 4: Activate environment by command as follows-
-conda activate <environment name>
-Step 5: Use command below to install required dependencies-
-python -m pip install -r requirements.txt
-Step 6: Run application by command;
-python app.py
-You will get url copy it and paste in browser.
-Step 7: You have sample_data folder where you can get images to test.
->>>>>>> aac06878b7a1a810ea638f269f262f646de801d0
+Project Link: https://id-validation-6pwz.onrender.com/
+
+Project Overview
+
+Azaria Scan is a high-precision Flask application designed to verify the authenticity of identity documents, specifically PAN cards and Driver's Licenses. By combining Structural Similarity Index (SSIM) and OCR keyword validation, the system can distinguish between authentic documents, modified files, and non-standard physical ID photos. Tech Stack:
+
+Python 3.x Flask OpenCV Tesseract OCR Scikit-Image Pillow
+
+Key Features
+
+Advanced Document Verification & Tamper Detection System
+Hybrid Analysis: Uses pixel-by-pixel SSIM for digital template matching and Tesseract OCR for data confirmation.
+Real-World Adaptation: Adaptive thresholds handle smartphone photography challenges like glare, shadows, and perspective shifts.
+High-Fidelity Comparison: Utilizes INTER_AREA interpolation and lossless saving to achieve 95%+ accuracy scores on official templates.
+Visual Diff Mapping: Automatically highlights structural inconsistencies by drawing bounding boxes around detected discrepancies.
+Installation & Setup
+
+Clone the repository
+Install dependencies: pip install flask opencv-python scikit-image pytesseract imutils pillow
+Install Tesseract OCR on your system
+Configure the path in views.py: pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+Run the application: python app.py
+Document Logic
+
+The system applies a tiered verification logic to ensure accuracy: Perfect Match (>70%): Confirmed against official digital templates. Physical ID Match: Confirmed via keyword detection (e.g., "Maryland", "Johnson") even if visual scores are lower due to lighting. Inconsistency: Flagged when data exists but structural alignment is significantly warped.
